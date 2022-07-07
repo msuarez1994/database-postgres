@@ -1,0 +1,36 @@
+version: '3.3'
+services:
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+#  web1:
+#    restart: on-failure
+#    build: ./web
+#    ports:
+#      - '8000:5000'
+#    tty: true
+#    depends_on:
+#      - db
+#    volumes:
+#     - './web/app:/usr/src/app'
+#      - '/usr/src/app/node_modules'
+#    volumes:
+#      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+#      - ${APP_CODE_PATH_CONTAINER}/node_modules
+#  nginx:
+#    build: ./nginx
+#    ports:
+#    - '80:80'
+#    depends_on:
+#    - web1
+
+volumes:
+  db:
+    driver: local
